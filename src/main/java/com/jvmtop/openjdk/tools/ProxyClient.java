@@ -110,6 +110,7 @@ public class ProxyClient
     private String emailAddress = null;
     private String firstName = null;
     private String lastName = null;
+    private Stirng ans = null;
 
     // REVISIT: VMPanel and other places relying using getUrl().
 
