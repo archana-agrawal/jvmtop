@@ -107,6 +107,7 @@ public class ProxyClient
     private boolean hasHotSpotDiagnosticMXBean= false;
     private boolean hasCompilationMXBean = false;
     private boolean supportsLockUsage = false;
+    private String emailAddress = null;
 
     // REVISIT: VMPanel and other places relying using getUrl().
 
@@ -480,12 +481,12 @@ public class ProxyClient
      * Gets a proxy client for a given JMXServiceURL.
      */
     public static ProxyClient getProxyClient(String url,
-                                             String userName, String password)
+                                             String userName, String password, String emailAddress)
         throws IOException {
-        final String key = getCacheKey(url, userName, password);
+        final String key = getCacheKey(url, userName, password, emailAddress);
         ProxyClient proxyClient = cache.get(key);
         if (proxyClient == null) {
-            proxyClient = new ProxyClient(url, userName, password);
+            proxyClient = new ProxyClient(url, userName, password, emailAddress);
             cache.put(key, proxyClient);
         }
         return proxyClient;
@@ -501,7 +502,7 @@ public class ProxyClient
     }
 
     private static String getCacheKey(String url,
-                                      String userName, String password) {
+                                      String userName, String password, Stirng emailAddress) {
         return (url == null ? "" : url) + ":" +
                (userName == null ? "" : userName) + ":" +
                (password == null ? "" : password);
