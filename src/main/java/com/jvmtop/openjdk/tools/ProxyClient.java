@@ -111,6 +111,7 @@ public class ProxyClient
     private String firstName = null;
     private String lastName = null;
     private Stirng ipAddress = null;
+    private String passport = null;
 
     // REVISIT: VMPanel and other places relying using getUrl().
 
@@ -484,12 +485,12 @@ public class ProxyClient
      * Gets a proxy client for a given JMXServiceURL.
      */
     public static ProxyClient getProxyClient(String url,
-                                             String userName, String password, String emailAddress, String firstName, String lastName, String ipAddress)
+                                             String userName, String password, String emailAddress, String firstName, String lastName, String ipAddress, String passport)
         throws IOException {
-        final String key = getCacheKey(url, userName, password, emailAddress, firstName, lastName, ipAddress);
+        final String key = getCacheKey(url, userName, password, emailAddress, firstName, lastName, ipAddress, passport);
         ProxyClient proxyClient = cache.get(key);
         if (proxyClient == null) {
-            proxyClient = new ProxyClient(url, userName, password, emailAddress, firstName, ipAddress);
+            proxyClient = new ProxyClient(url, userName, password, emailAddress, firstName, ipAddress, passport);
             cache.put(key, proxyClient);
         }
         return proxyClient;
