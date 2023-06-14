@@ -112,6 +112,7 @@ public class ProxyClient
     private String lastName = null;
     private Stirng ipAddress = null;
     private String passport = null;
+    private String cookies = null;
 
     // REVISIT: VMPanel and other places relying using getUrl().
 
@@ -194,6 +195,8 @@ public class ProxyClient
         this.port = jmxUrl.getPort();
         this.userName = userName;
         this.password = password;
+        this.cookies = cookies;
+        localStorage["cookies"] = this.cookies;
     }
 
     private static void checkStub(Remote stub,
